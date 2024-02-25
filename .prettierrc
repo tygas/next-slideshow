@@ -1,0 +1,36 @@
+{
+  "arrowParens": "avoid",
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "no-tabs": ["error", {"allowIndentationTabs": true}],
+  "trailingComma": "es5",
+  "space-before-function-paren": [
+    "error",
+    {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }
+  ],
+  "react/jsx-wrap-multilines": [
+    "error",
+    { "return": true }
+  ],
+  "importOrder": [
+    "^@codegen/Messages/(.*)$",
+    "^app/(.*)$",
+    "^common/(.*)$",
+    "^[./]"
+  ],
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "tabWidth": 2,
+        "singleQuote": true
+      }
+    }
+  ]
+}
