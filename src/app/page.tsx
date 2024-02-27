@@ -58,7 +58,7 @@ const HomePage: NextPage = () => {
         return { url: (state.url + 1) % length || 1 };
       }
       case "prev":
-        return { url: (state.url - 1 + length) % images.length || 1 };
+        return { url: (state.url - 1 + length) % length || 1 };
       default:
         return state;
     }
