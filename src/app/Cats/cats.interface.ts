@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse, HttpStatusCode } from "axios";
 
 export interface ICat {
   breeds: string[];
@@ -6,8 +6,4 @@ export interface ICat {
   url: string;
   width: number;
   height: number;
-}
-
-export interface ICatsResponse {
-  data: ICat[];
 }
