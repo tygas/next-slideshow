@@ -1,10 +1,16 @@
 "use client";
 import type { NextPage } from "next";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useFetchCats from "@/app/use-cats.hook";
-import { ICat } from "@/app/Cats/cats.interface";
+
+const Images: string[] = [
+  "https://images.pexels.com/photos/13922583/pexels-photo-13922583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/3611396/pexels-photo-3611396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/11032489/pexels-photo-11032489.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/2260956/pexels-photo-2260956.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/3793772/pexels-photo-3793772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+];
 
 interface StateType {
   url: number;
@@ -15,38 +21,19 @@ interface ActionType {
 }
 
 const HomePage: NextPage = () => {
-  const { cats = [], loading, error } = useFetchCats<ICat[]>();
-  const [images, setImages] = useState({});
-  const initialImageState: StateType = { url: 0 };
-
-  const [currentImage, setCurrentImage] = useReducer(reducer, initialImageState);
+  const initialState: StateType = { url: 0 };
+  const [currentImage, setCurrentImage] = useReducer(reducer, initialState);
   const [direction, setDirection] = useState<number>(1);
-
-  useEffect(() => {
-    if (Object.keys(cats).length) {
-      setImages(Object.values(cats)?.map(({ url }) => url));
-    }
-  }, [loading]);
-
-  console.log(images, currentImage);
 
   function reducer(state: StateType, action: ActionType): StateType {
     switch (action.type) {
       case "next":
-        return { url: (state.url + 1) % images.length };
+        return { url: (state.url + 1) % Images.length };
       case "prev":
-        return { url: (state.url - 1 + images.length) % images.length };
+        return { url: (state.url - 1 + Images.length) % Images.length };
       default:
         return state;
     }
-  }
-
-  if (loading || !Object.keys(images).length) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
   }
 
   const slideTransition = {
@@ -73,14 +60,14 @@ const HomePage: NextPage = () => {
       <main className="w-full sm:w-[500px] h-60 sm:h-80 bg-white relative shadow-lg shadow-slate-400 overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
-            src={images[currentImage.url]}
-            alt={currentImage.url}
+            src={Images[currentImage.url]}
+            alt="slider image!"
             className=" absolute w-full h-full"
             variants={slideTransition}
             initial="initial"
             animate="animate"
             exit="exit"
-            key={images[currentImage.url]}
+            key={Images[currentImage.url]}
             transition={{
               type: "spring",
               stiffness: 120,
