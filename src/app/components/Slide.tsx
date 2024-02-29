@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { slideTransition } from "@/app/Slides/slides-transision.config";
+import { slideTransition } from "@/app/components/slides-transision.config";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
