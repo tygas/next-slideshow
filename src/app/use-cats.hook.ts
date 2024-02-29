@@ -1,6 +1,6 @@
 import { fetchCatsApi } from "@/app/api";
 import { useQuery } from "react-query";
-import { ICat } from "@/app/Cats/cats.interface";
+import { ICat } from "@/app/interfaces/cats.interface";
 
 const fetchCats = (): { cats: ICat[] | undefined; loading: boolean; error: unknown } => {
   const { data: cats, isLoading, error } = useQuery<ICat[]>("cats", fetchCatsApi);

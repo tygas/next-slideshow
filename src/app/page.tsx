@@ -2,8 +2,8 @@
 import type { NextPage } from "next";
 import { useEffect, useReducer, useState } from "react";
 import fetchCats from "@/app/use-cats.hook";
-import { Loader } from "@/app/components/loader";
 import { Slide } from "@/app/components/Slide";
+import { Loader } from "@/app/components/Loader";
 
 interface StateType {
   url: number;
