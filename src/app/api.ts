@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICat } from "@/app/Cats/cats.interface";
+import { ICat } from "@/app/interfaces/cats.interface";
 
 const CATS_PAGE_LIMIT = 20;
 const theCatApiUrl = (limit = CATS_PAGE_LIMIT) => `https://api.thecatapi.com/v1/images/search?limit=${limit}`;

@@ -1,9 +1,9 @@
 "use client";
 import type { NextPage } from "next";
 import { useEffect, useReducer, useState } from "react";
-import fetchCats from "@/app/use-cats.hook";
-import { Loader } from "@/app/components/loader";
+import useCats from "@/app/use-cats.hook";
 import { Slide } from "@/app/components/Slide";
+import { Loader } from "@/app/components/Loader";
 
 interface StateType {
   url: number;
@@ -14,7 +14,7 @@ interface ActionType {
 }
 
 const HomePage: NextPage = () => {
-  const { cats = [], loading, error } = fetchCats();
+  const { cats = [], loading, error } = useCats();
   const initialImageState: StateType = { url: 0 };
 
   const [images, setImages] = useState<any>({});
@@ -24,7 +24,7 @@ const HomePage: NextPage = () => {
     if (Object.keys(cats).length) {
       setImages(Object.values(cats)?.map(({ url }) => url));
     }
-  }, [loading]);
+  }, [loading, cats]);
 
   function reducer(state: StateType, action: ActionType): StateType {
     switch (action.type) {
